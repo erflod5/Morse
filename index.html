@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sistema ASCmorse</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script src="/js/jquery-3.3.1.slim.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <style>
+    body {
+      position: relative;
+    }
+
+    #section1 {
+      padding-top: 50px;
+      height: 550px;
+      background-color: #1e88e5;
+    }
+
+    #section2 {
+      padding-top: 50px;
+      height: 500px;
+      background-color: #673ab7;
+    }
+
+    #section3 {
+      padding-top: 50px;
+      height: 500px;
+      background-color: #ff9800;
+    }
+
+    #section4 {
+      padding-top: 50px;
+      height: 500px;
+      background-color: #f12308;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#section1">Mensaje de bienvenida</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section2">Traducción ASCII->Morse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section4">Traducción Morse->ASCII</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section3">Juego</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <div id="section1" class="container-fluid">
+    <br />
+    <br />
+    <div class="jumbotron">
+      <h1 class="display-2 text-secondary" fontcolor>HOLA GRUPO # 4!</h1>
+      <p class="text-primary">Francisco Javier Bran Fuentes - 201730555</p>
+      <p class="text-primary">Erik Gerardo Flores Diaz - 201701066</p>
+      <p class="text-primary">Diego Estuardo Gómez Fernández - 201612141</p>
+      <p class="text-primary">Jose Carlos Bautista Mazariegos - 201504231</p>
+      <p></p>
+    </div>
+  </div>
+  <div id="section2" class="container-fluid">
+    <div class="container-fluid" style="background-color:white" id="juego">
+      <h1>Traducción ASCII->Morse</h1>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Ingrese la cadena</span>
+            </div>
+            <textarea class="form-control" rows="10" cols="50" aria-label="With textarea" id="txtAM"></textarea>
+          </div>
+          <br />
+          <button type="button" class="btn btn-primary btn-lg" onclick="btnAM()">
+            Traduccion
+          </button>
+          <br />
+          <br />
+        </div>
+        <div class="col-6">
+          <h2>Historial</h2>
+          <table id="tablitaAM">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ASCII</th>
+                <th scope="col">Morse</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="section4" class="container-fluid">
+    <div class="container-fluid" style="background-color:white" id="juego">
+      <h1>Traducción Morse->ASCII</h1>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <textarea class="form-control" rows="10" cols="50" aria-label="With textarea" id="display"></textarea>
+          </div>
+          <br />
+          <button type="button" class="btn btn-success btn-lg" onclick="btnMA()">
+            Escuchar
+          </button>
+          <br />
+          <br />
+        </div>
+        <div class="col-6">
+          <h2>Historial</h2>
+          <table id="tablitaMA">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Morse</th>
+                <th scope="col">Ascii</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="section3" class="container-fluid">
+    <div class="container-fluid" style="background-color:white" id="juego">
+      <h1>Juego/Aprendizaje</h1>
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-6">
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-lg">Ingrese texto</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" id="txtJuego"
+              aria-describedby="inputGroup-sizing-lg" />
+          </div>
+          <br />
+          <button type="button" class="btn btn-primary btn-lg" onclick="modeGame()">
+            Enviar cadena
+          </button>
+          <br />
+          <br />
+        </div>
+        <div class="col-6">
+          <h1>! PUNTEO OBTENIDO: 100</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/socket.js"></script>
+  <script>
+    var iterator = 0;
+    function btnAM(event) {
+      var text = document.getElementById("txtAM").value;
+      console.log("evento trauccion ascii->Morse");
+      var txtAsciiMorse = document.getElementById("txtAM");
+      var fila = '<tr><th class="row">' + 1 + "</td><td>" + text + "</td></tr>";
+      var newRowTable = document.createElement("TR");
+      newRowTable.innerHTML = fila;
+      document.getElementById("tablitaAM").appendChild(newRowTable);
+      sock.send("1" + txtAsciiMorse.value.toUpperCase());
+      console.log(txtAsciiMorse.value.toUpperCase());
+      txtAsciiMorse.value = "";
+    }
+    function modeGame(event) {
+      var cadena = document.getElementById("txtJuego").value.toString();
+      console.log(cadena);
+      if( cadena.length < 10){
+        while(cadena.length < 10){
+          var dato = Math.floor(Math.random() * 26);
+          cadena += String.fromCharCode(91 - dato);
+        }
+      }
+      cadena = cadena.substring(0,10);
+      console.log(cadena);
+      sock.send("2" + cadena.toUpperCase());
+    }
+  </script>
+</body>
+
+</html>
